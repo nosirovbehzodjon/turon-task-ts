@@ -2,7 +2,6 @@
 import { useRef, useState } from "react";
 import videoStyle from "@/styles/components/video/video.module.scss";
 import vid from "@/src/assets/videos/vid.mp4";
-// const vid = require("@/src/assets/videos/vid.mp4");
 import Button from "../button";
 const Video = () => {
     const [ads, setAds] = useState(false);

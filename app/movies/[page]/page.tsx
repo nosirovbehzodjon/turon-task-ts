@@ -1,19 +1,15 @@
 "use client";
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import React, { useEffect, useState } from "react";
-import { Button, Card, Input, Pagination, Showcase } from "@/src/components";
+import React, { useState } from "react";
+import { Button, Card, Error, Input, Pagination } from "@/src/components";
 import home from "@/styles/pages/home.module.scss";
-import { Grid } from "react-loader-spinner";
 import useQueries from "@/src/hooks/useQueries";
 import Loading from "@/src/components/loading";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useQueryClient } from "@tanstack/react-query";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
-    // const router = useRouter();
-    const searchParams = useSearchParams();
     const pathname = usePathname();
     const id = pathname.split("/").pop();
     const [page, setPage] = useState<number>(Number(id) || 1);
@@ -21,7 +17,7 @@ export default function Home() {
     const {
         data: movies,
         isLoading,
-        refetch,
+        isError,
     } = useQueries({
         main_key: `movie-list?page=${id}&items=20`,
         url: `movie-list?page=${id}&items=20`,
@@ -31,6 +27,9 @@ export default function Home() {
     };
     if (isLoading) {
         return <Loading />;
+    }
+    if (isError) {
+        return <Error message={"something error!"} />;
     }
     return (
         <>
@@ -62,28 +61,32 @@ export default function Home() {
                         </div>
                     </main>
                     <div className="other flex justify-between flex-wrap py-3">
-                        {movies.data.movies
-                            .filter((item: any) =>
-                                item?.titleEn
-                                    ? item?.titleEn
-                                          .toLowerCase()
-                                          .includes(search.toLowerCase())
-                                    : item?.year
-                                          .toString()
-                                          .toLowerCase()
-                                          .includes(search.toLowerCase())
-                            )
-                            .map((item: any) => {
-                                return (
-                                    <Card
-                                        id={item.id}
-                                        key={item.id}
-                                        url={item.poster}
-                                        title={item.titleEn}
-                                        year={item.year}
-                                    />
-                                );
-                            })}
+                        {!movies.data.movies ? (
+                            <Error message={"something error!"} />
+                        ) : (
+                            movies.data.movies
+                                ?.filter((item: any) =>
+                                    item?.titleEn
+                                        ? item?.titleEn
+                                              .toLowerCase()
+                                              .includes(search.toLowerCase())
+                                        : item?.year
+                                              .toString()
+                                              .toLowerCase()
+                                              .includes(search.toLowerCase())
+                                )
+                                .map((item: any) => {
+                                    return (
+                                        <Card
+                                            id={item.id}
+                                            key={item.id}
+                                            url={item.poster}
+                                            title={item.titleEn}
+                                            year={item.year}
+                                        />
+                                    );
+                                })
+                        )}
                     </div>
                     <div className={"flex items-center justify-center p-1"}>
                         <Pagination

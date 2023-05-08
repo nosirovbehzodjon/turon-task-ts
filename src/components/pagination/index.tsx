@@ -3,7 +3,6 @@ import styles from "@/styles/components/pagination/pagination.module.scss";
 import { useRouter } from "next/navigation";
 import React from "react";
 import ReactPaginate from "react-paginate";
-// import { useRouter } from "next/router";
 type Props = {
     setPage: (count: number) => void;
     pageCount: number;
@@ -14,10 +13,6 @@ const Pagination = ({ setPage, page, pageCount }: Props) => {
     const handlePageClick = (data: any) => {
         const n: number = data.selected + 1;
         router.push(`movies/${n}?items=20`);
-        // setPage(n);
-        // router.push(`?page=${n}&items=20`, {
-        //     forceOptimisticNavigation: false,
-        // });
     };
     return (
         <div>

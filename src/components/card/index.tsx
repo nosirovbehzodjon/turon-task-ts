@@ -1,6 +1,6 @@
 import Image from "next/image";
-import play from "../../assets/images/play.svg";
-import card from "../../../styles/components/card/card.module.scss";
+import play from "@/src/assets/images/play.svg";
+import card from "@/styles/components/card/card.module.scss";
 import Button from "../button";
 import Link from "next/link";
 

@@ -1,9 +1,8 @@
-
+import vid from "@/src/assets/videos/vid.mp4";
 type Props = {
     setAds: (bool: boolean) => void;
     endAds: () => void;
 };
-import vid from "@/src/assets/videos/vid.mp4";
 function Overlay({ setAds, endAds }: Props) {
     return (
         <div>

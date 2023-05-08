@@ -4,5 +4,5 @@ import Showcase from "./showcase";
 import Pagination from "./pagination";
 import Input from "./input";
 import Video from "./video";
-Video;
-export { Button, Card, Showcase, Input, Pagination, Video };
+import Error from "./error";
+export { Button, Card, Showcase, Input, Pagination, Video, Error };

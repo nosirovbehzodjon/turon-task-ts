@@ -11,9 +11,8 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper";
 import useQueries from "@/src/hooks/useQueries";
-import { useRouter } from "next-router-mock";
 import Loading from "@/src/components/loading";
-import { Video } from "@/src/components";
+import { Video, Error } from "@/src/components";
 type Employees = {
     id: number;
     fullName: string;
@@ -23,12 +22,19 @@ type Employees = {
 const Details = () => {
     const pathname = usePathname();
     const id = pathname.split("/").pop();
-    const { data: details, isLoading } = useQueries({
+    const {
+        data: details,
+        isLoading,
+        isError,
+    } = useQueries({
         main_key: "movies",
         url: `movie-detail?id=${id}`,
     });
     if (isLoading) {
         return <Loading />;
+    }
+    if (isError) {
+        return <Error message={"something error!"} />;
     }
 
     const data = details?.data;

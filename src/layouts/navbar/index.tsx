@@ -5,7 +5,6 @@ import logo from "@/src/assets/images/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import navbar from "@/styles/layouts/navbar.module.scss";
-import { FaBars } from "react-icons/fa";
 import { useEffect, useState } from "react";
 const Navbar = () => {
     const [sticky, setSticky] = useState(false);
