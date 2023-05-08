@@ -7,7 +7,7 @@ import vid from "@/src/assets/videos/vid.mp4";
 import Button from "../button";
 const Video = () => {
     const [ads, setAds] = useState(false);
-    const videoPlayer = useRef<HTMLVideoElement>(null);
+    const videoPlayer = useRef<any>(null);
     const [viewBackground, setViewBackground] = useState(true);
     const playAds = () => {
         videoPlayer.current.play();
