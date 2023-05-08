@@ -13,10 +13,11 @@ const Pagination = ({ setPage, page, pageCount }: Props) => {
     const router = useRouter();
     const handlePageClick = (data: any) => {
         const n: number = data.selected + 1;
-        setPage(n);
-        router.push(`?page=${n}&items=20`, {
-            forceOptimisticNavigation: false,
-        });
+        router.push(`movies/${n}`);
+        // setPage(n);
+        // router.push(`?page=${n}&items=20`, {
+        //     forceOptimisticNavigation: false,
+        // });
     };
     return (
         <div>
@@ -27,7 +28,6 @@ const Pagination = ({ setPage, page, pageCount }: Props) => {
                 pageRangeDisplayed={2}
                 marginPagesDisplayed={1}
                 nextLabel={">"}
-                initialPage={page - 1}
                 forcePage={page - 1}
                 breakLabel={"..."}
                 breakClassName={styles.breakClassName}
