@@ -13,7 +13,7 @@ const Pagination = ({ setPage, page, pageCount }: Props) => {
     const router = useRouter();
     const handlePageClick = (data: any) => {
         const n: number = data.selected + 1;
-        router.push(`movies/${n}`);
+        router.push(`movies/${n}?items=20`);
         // setPage(n);
         // router.push(`?page=${n}&items=20`, {
         //     forceOptimisticNavigation: false,
