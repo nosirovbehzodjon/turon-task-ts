@@ -2,6 +2,7 @@
   "name": "turon-typescript",
   "version": "0.1.0",
   "private": true,
+  "types": "index.d.ts",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -2,7 +2,8 @@
 import { useRef, useState } from "react";
 import Overlay from "../overlay";
 import videoStyle from "@/styles/components/video/video.module.scss";
-// import vid from "../../assets/videos/vid.mp4";
+import vid from "@/src/assets/videos/vid.mp4";
+// const vid = require("@/src/assets/videos/vid.mp4");
 import Button from "../button";
 const Video = () => {
     const [ads, setAds] = useState(false);
@@ -25,7 +26,7 @@ const Video = () => {
             <video
                 controls
                 onPlay={playAds}
-                src={"../../assets/videos/vid.mp4"}
+                src={vid}
                 onEnded={endAds}
                 width={"100%"}
                 ref={videoPlayer}

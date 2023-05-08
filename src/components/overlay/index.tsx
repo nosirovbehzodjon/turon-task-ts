@@ -3,7 +3,7 @@ type Props = {
     setAds: (bool: boolean) => void;
     endAds: () => void;
 };
-const vid = require("../../assets/videos/vid.mp4")
+import vid from "@/src/assets/videos/vid.mp4";
 function Overlay({ setAds, endAds }: Props) {
     return (
         <div>
