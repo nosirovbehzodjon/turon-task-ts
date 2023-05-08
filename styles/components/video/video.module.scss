@@ -1,0 +1,16 @@
+.video {
+    position: relative;
+    .blur {
+        position: absolute;
+        z-index: 1;
+        background-color: rgba(87, 39, 39, 0.452);
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(25px);
+        width: 100%;
+        left: 0;
+        top: 0;
+    }
+}
