@@ -23,8 +23,6 @@ type Employees = {
 const Details = () => {
     const pathname = usePathname();
     const id = pathname.split("/").pop();
-    console.log(id);
-
     const { data: details, isLoading } = useQueries({
         main_key: "movies",
         url: `movie-detail?id=${id}`,
@@ -34,7 +32,6 @@ const Details = () => {
     }
 
     const data = details?.data;
-    console.log(data);
 
     return (
         <main className="container py-3">

@@ -1,5 +1,4 @@
 import button from "@/styles/components/button/button.module.scss";
-import { type } from "os";
 import React from "react";
 type Props = {
     type?: string;

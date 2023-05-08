@@ -20,6 +20,7 @@ ul {
 * {
     box-sizing: border-box;
     padding: 0;
+    scroll-behavior: smooth;
     margin: 0;
     color: white;
 }
@@ -105,23 +106,22 @@ a {
     src: url("../src/assets/typography/orbitron/static/Orbitron-Regular.ttf");
 }
 
-
-@media (max-width:1450px){
-    .container{
+@media (max-width: 1450px) {
+    .container {
         width: 1000px;
     }
 }
-@media (max-width:1050px){
-    .container{
+@media (max-width: 1050px) {
+    .container {
         width: 800px;
     }
 }
 
-@media (max-width:850px){
-    .container{
+@media (max-width: 850px) {
+    .container {
         width: 400px;
     }
-    .other{
+    .other {
         justify-content: center;
     }
 }

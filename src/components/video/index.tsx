@@ -1,6 +1,5 @@
 "use client";
 import { useRef, useState } from "react";
-import Overlay from "../overlay";
 import videoStyle from "@/styles/components/video/video.module.scss";
 import vid from "@/src/assets/videos/vid.mp4";
 // const vid = require("@/src/assets/videos/vid.mp4");
@@ -31,7 +30,6 @@ const Video = () => {
                 width={"100%"}
                 ref={videoPlayer}
             >
-                {/* <source src={vid} type="video/mp4" /> */}
             </video>
             {viewBackground ? (
                 <div className={videoStyle.blur}>
@@ -46,7 +44,6 @@ const Video = () => {
                     </Button>
                 </div>
             ) : null}
-            {ads && <Overlay setAds={setAds} endAds={endAds} />}
         </div>
     );
 };

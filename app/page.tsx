@@ -1,23 +1,39 @@
 "use client";
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Input, Pagination, Showcase } from "@/src/components";
 import home from "../styles/pages/home.module.scss";
 import { Grid } from "react-loader-spinner";
 import useQueries from "@/src/hooks/useQueries";
 import Loading from "@/src/components/loading";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
-    const router = useRouter();
+    // const router = useRouter();
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const [page, setPage] = useState<number>(
+        Number(searchParams.get("page")) || 1
+    );
 
     const [search, setSearch] = useState("");
-    const [count, setCount] = useState(1 || 1);
-    const { data: movies, isLoading } = useQueries({
-        main_key: "movies",
-        url: `movie-list?page=${count}&items=20`,
+    const {
+        data: movies,
+        isLoading,
+        refetch,
+    } = useQueries({
+        main_key: `movie-list?page=${page}&items=20`,
+        url: `movie-list?page=${page}&items=20`,
     });
+    const queyClient = useQueryClient();
+    useEffect(() => {
+        queyClient.invalidateQueries({
+            queryKey: [`movie-list?page=${page}&items=20`],
+        });
+        refetch();
+    }, [page]);
     const handleChange = (e: any) => {
         setSearch(e.target.value);
     };
@@ -78,7 +94,8 @@ export default function Home() {
                     </div>
                     <div className={"flex items-center justify-center p-1"}>
                         <Pagination
-                            setCount={setCount}
+                            setPage={setPage}
+                            page={page}
                             pageCount={movies?.data.lastPage}
                         />
                     </div>

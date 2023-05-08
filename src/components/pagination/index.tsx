@@ -1,24 +1,22 @@
 "use client";
 import styles from "@/styles/components/pagination/pagination.module.scss";
 import { useRouter } from "next/navigation";
+import React from "react";
 import ReactPaginate from "react-paginate";
 // import { useRouter } from "next/router";
 type Props = {
-    setCount: (count: number) => void;
+    setPage: (count: number) => void;
     pageCount: number;
+    page: number;
 };
-const Pagination = ({ setCount, pageCount }: Props) => {
+const Pagination = ({ setPage, page, pageCount }: Props) => {
     const router = useRouter();
     const handlePageClick = (data: any) => {
-        const count: number = data.selected + 1;
-        setCount(count);
-        console.log(router);
-        
-        router.push(
-            `?page=${data.selected + 1}&items=20`,
-            { forceOptimisticNavigation: true },
-            
-        );
+        const n: number = data.selected + 1;
+        setPage(n);
+        router.push(`?page=${n}&items=20`, {
+            forceOptimisticNavigation: false,
+        });
     };
     return (
         <div>
@@ -29,6 +27,8 @@ const Pagination = ({ setCount, pageCount }: Props) => {
                 pageRangeDisplayed={2}
                 marginPagesDisplayed={1}
                 nextLabel={">"}
+                initialPage={page - 1}
+                forcePage={page - 1}
                 breakLabel={"..."}
                 breakClassName={styles.breakClassName}
                 containerClassName={styles.container}
@@ -44,4 +44,4 @@ const Pagination = ({ setCount, pageCount }: Props) => {
     );
 };
 
-export default Pagination;
+export default React.memo(Pagination);
